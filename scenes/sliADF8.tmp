@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5kntjgph8m80"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_4gbwp"]
+[ext_resource type="Texture2D" uid="uid://dgchorh21uabi" path="res://assets/sprites/slime_green.png" id="1_ojv6c"]
+[ext_resource type="PackedScene" uid="uid://776qqlt07h0j" path="res://scenes/killzone.tscn" id="2_x0p01"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bqcu"]
+atlas = ExtResource("1_ojv6c")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prtrv"]
+atlas = ExtResource("1_ojv6c")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbkb3"]
+atlas = ExtResource("1_ojv6c")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rchex"]
+atlas = ExtResource("1_ojv6c")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jyb4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bqcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prtrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbkb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rchex")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71xmp"]
+size = Vector2(10, 15)
+
+[node name="Slime" type="Node2D"]
+script = ExtResource("1_4gbwp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jyb4a")
+autoplay = "default"
+frame = 2
+frame_progress = 0.130812
+
+[node name="Killzone" parent="." instance=ExtResource("2_x0p01")]
+position = Vector2(0, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_71xmp")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(12, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-12, 0)
