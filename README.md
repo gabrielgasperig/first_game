@@ -1,2 +1,3 @@
-# first_game
-Meu primeiro jogo em Godot
+# Meu primeiro jogo em Godot 🕹️
+
+Arquivos de projeto do meu primeiro jogo em Godot.
